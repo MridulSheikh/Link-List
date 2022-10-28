@@ -293,18 +293,20 @@ Node *reverseNoneRecursive(Node *&head)
 
 Node *reverseRecursive(Node *&head)
 {
-	//This is our base call 
-	if(head->Next == NULL)
-	{
-			return head;
-	}
-	
-	//Recursive call
-	Node* newHead = reverseRecursive(head->Next);
+    // This is our base call
+    if (head == NULL || head->Next == NULL)
+    {
+        if (head == NULL)
+            cout << "The link list is empty" << endl;
+        return head;
+    }
+
+    // Recursive call
+    Node *newHead = reverseRecursive(head->Next);
     head->Next->Next = head;
     head->Next = NULL;
-	
-	return newHead;
+
+    return newHead;
 };
 
 int main()
@@ -413,8 +415,8 @@ int main()
             head = reverseNoneRecursive(head);
             break;
 
-        case 12: 
-            reverseRecursive(head);
+        case 12:
+            head = reverseRecursive(head);
             break;
         default:
             break;
@@ -428,7 +430,6 @@ int main()
     int length = countLength(head);
 
     cout << "the length of list is : " << length << endl;
-    
 
     return 0;
 }
